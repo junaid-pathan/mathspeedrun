@@ -1,0 +1,118 @@
+@keyframes fadein {
+    0%{ 
+        opacity: 0;
+    }
+    100%{
+       opacity: 1;
+    }
+}
+body{
+    text-align: center;
+    justify-content: center;
+    background-image: url(1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Makes the image stay in place when scrolling */
+
+}
+#hide{
+    display: none;
+}
+#game{
+    height: 100%;
+    width: 100% ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.operation{
+   margin: 20;
+   padding-left: 30; 
+
+}
+#question{
+    display: block;
+    font-size: 160;
+    background-color: beige;
+    border-color: brown;
+    border-style:double;
+    border-radius: 15px;
+    width: 750;
+    margin-bottom: 50;
+
+}
+#bar{
+    
+    text-align: center;
+}
+#input{
+    font-size: 30;
+    text-align: center;
+    padding: 15;
+    border-radius: 20px;
+
+}
+#score{
+    
+    font-size: 30px;
+    margin: 30px;
+    font-family: cursive;
+}
+
+#time{
+    color: red;
+    font-size: 80;
+   
+    
+}
+#welcome{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top:20%;
+}
+h1{
+    padding: 10px;
+    height: 140px;
+    width: 60%;
+    border-style: ridge;
+    border-radius: 15px;
+    font-family: monospace;
+    color: brown;
+    font-size: 50px;
+    background-color: beige;
+    text-align: center;
+}
+h2{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px; 
+    margin: 50px; 
+    position:absolute; 
+    top:50%;
+    right: 30%;
+    width: 40%;
+}
+
+#buttons{
+    position:absolute;
+    top: 75%;
+    right: 30%;
+}
+.options{
+    padding: 10px;
+    margin: 50px;
+    font-size: 30px;
+}
+
+#firstpage{
+    display: block;
+    animation-name: fadein;
+    animation-duration: 2s;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+}
