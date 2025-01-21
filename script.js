@@ -26,61 +26,46 @@ function red(){
     number.style.color='red'
     })
 }
-function add() {
-    // Hide the first page and show the "hide" div
-    document.querySelector('#firstpage').style.display = 'none';
-    document.querySelector('#hide').style.display = 'block';
-
-    // Generate random numbers
-    let num1 = Math.ceil(Math.random() * 10);
-    let num2 = Math.ceil(Math.random() * 10);
-
-    // Display the random numbers in the respective elements
-    document.querySelector('#num1').innerHTML = num1;
-    document.querySelector('#num2').innerHTML = num2;
-
-    // Call the check function
-    check(num1, num2); // Pass the local variables to the function
+function add(){ 
+    document.querySelector('#firstpage').style.display = 'none' //firstpage div is hidden and hide div is shown
+    document.querySelector('#hide').style.display='block'
+    let num1 = Math.ceil(Math.random()*10)
+    let num2 = Math.ceil(Math.random()*10)
+    document.querySelector('#num1').innerHTML=num1;
+    document.querySelector('#num2').innerHTML=num2;
+    check(num1,num2)//Since num is local variable better to give it in the function
 }
-
-function check(num1, num2) {
-    let score = parseInt(document.querySelector('#value').innerHTML) || 0;
-    let bar = document.querySelector('#input');
-
-    // Add the event listener to listen for "Enter" key only
-    bar.addEventListener('keydown', function handlekeydown(event) {
-        if (event.key === "Enter") { // Only run logic when "Enter" is pressed
-            let useranswer = parseInt(bar.value); // Get user input
-            let correctanswer = num1 + num2; // Calculate correct answer
-
-            console.log("User Answer:", useranswer, "Correct Answer:", correctanswer);
-
-            if (useranswer === correctanswer) {
-                green();
-                score += 5;
-            } else {
-                red();
-                score -= 5;
+function check(num1,num2){
+    let score = parseInt(document.querySelector('#value').innerHTML)
+    let bar =  document.querySelector('#input')
+    bar.addEventListener('keydown',handlekeydown)
+    function handlekeydown(event){
+        if (event.key==="Enter"){
+            let useranswer= parseInt(bar.value); 
+            let correctanswer= num1+num2
+            console.log(useranswer,correctanswer)
+            if (useranswer===correctanswer){
+                green()
+                document.querySelector("#value").innerHTML=`${score+5}`
+                
             }
-
-            // Update the score display
-            document.querySelector("#value").innerHTML = `${score}`;
-
-            // Clear the input box
-            bar.value = "";
-
-            // After a short delay, reset the background and call `add()` to continue
+            else{
+                red()
+                document.querySelector("#value").innerHTML=`${score-5}`
+                
+            }
             setTimeout(() => {
-                black(); // Reset background
-                add();   // Generate a new question
-            }, 250);
+                     black()
+                     add();
+                }, 250);
 
-            // Remove this event listener to prevent multiple calls
-            bar.removeEventListener('keydown', handlekeydown);
+            
+            bar.value=""
+            bar.removeEventListener('keydown',handlekeydown)
         }
-    });
-}
-
+             
+        }   
+    }
 
 function multiply(){ 
 
