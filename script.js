@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded",click)
 function click(){  //to see which button u clicked
     document.querySelectorAll('button').forEach((button)=>{ 
-        button.onclick = function(){  //only when clicked this function runs. 
+        button.onclick = function(){ 
+            timer()  //only when clicked this function runs. 
             if (button.dataset.operation === 'add'){ //data-operation is the field in the button
                 add()
             }
@@ -10,6 +11,22 @@ function click(){  //to see which button u clicked
             }
         }
     })
+}
+function timer(){
+    let timeleft = 29; 
+    let timer = document.querySelector('#time')
+    const intervalid = setInterval(() => {   //Have to give it a variable to store the name of the timer
+        timer.innerHTML=timeleft;
+        timeleft--
+        if(timeleft === 0 ){
+            clearInterval(intervalid)
+            timer.innerHTML="TIME'S UP"
+            document.querySelector('#hide').style.display='none'
+
+        }
+        
+    }, 1000);
+
 }
 function green(){
     document.querySelectorAll(".operation").forEach(number=>{
@@ -55,7 +72,7 @@ function check(num1,num2){
                 
             }
             setTimeout(() => {
-                     black()
+                     black();
                      add();
                 }, 250);
 
