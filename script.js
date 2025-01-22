@@ -1,13 +1,16 @@
-document.addEventListener("DOMContentLoaded",click)
-function click(){  //to see which button u clicked
+document.addEventListener("DOMContentLoaded",()=>{
+    initializeGame()
+})
+function initializeGame(){  //to see which button u clicked\
+    document.querySelectorAll('button').forEach((button) => {
+        button.removeEventListener('click', button.onclick);
+    });
+   
     document.querySelectorAll('button').forEach((button)=>{ 
         button.onclick = function(){ 
             timer()  //only when clicked this function runs. 
             if (button.dataset.operation === 'add'){ //data-operation is the field in the button
                 add()
-            }
-            else{
-                multiply()
             }
         }
     })
@@ -38,23 +41,31 @@ function add(){
     document.querySelector('#num2').innerHTML=num2;
     check(num1,num2)//Since num is local variable better to give it in the function
 }
+function resettimer(){
+    let timer = document.querySelector('#time');
+    clearInterval(window.timerInterval);
+    timer.innerHTML='30'
+
+}
 function timer(){
     let timeleft = 29; 
     let timer = document.querySelector('#time')
-    const intervalid = setInterval(() => {   //Have to give it a variable to store the name of the timer
+    window.timerInterval  = setInterval(() => {   //Have to give it a variable to store the name of the timer
         timer.innerHTML=timeleft;
-        timeleft--
-        if(timeleft === 1 ){
+        timeleft--  
+        if (timeleft===1){
             timer.innerHTML="TIME'S UP"
             document.querySelector('#input').disabled=true;
-            
-        }   
-        if (timeleft<=0){
-            clearInterval(intervalid)
+        }
+        if (timeleft===0){
+            clearInterval(  window.timerInterval )
             document.querySelector('#hide').style.display='none'
+            document.querySelector('#resultpage').style.display='block'
+            result()
         }
     }, 1000);
 }
+
 function check(num1,num2){
     let score = parseInt(document.querySelector('#value').innerHTML)
     let bar =  document.querySelector('#input')
@@ -70,7 +81,7 @@ function check(num1,num2){
             }
             else{
                 red()
-                document.querySelector("#value").innerHTML=`${score-5}`
+                document.querySelector("#value").innerHTML=`${score-7}`
             }
             setTimeout(() => {
                      black();
@@ -83,6 +94,32 @@ function check(num1,num2){
         }   
     }
 
-function multiply(){ 
+function result(){ 
+    let userscore = document.querySelector('#displayscore')
+    let highanimation = document.querySelector('#highscore')
+    let highscore=document.querySelector('#maxscore')
+    userscore.style.animationPlayState = "running"
+    highanimation.style.animationPlayState = "running"
 
+    let finalscore = parseInt(document.querySelector('#value').innerHTML)
+    console.log(finalscore)
+    if (!localStorage.getItem('maxscore')){
+        localStorage.setItem('maxscore',0)
+    }
+    let maxscore = parseInt(localStorage.getItem('maxscore'))
+    if (maxscore<=finalscore){
+        localStorage.setItem('maxscore',finalscore)
+        maxscore=finalscore
+    }
+    userscore.innerHTML=finalscore
+    highscore.innerHTML=maxscore
+    let restart = document.querySelector('#restart')
+    restart.addEventListener('click',gamerestart)
+}
+function gamerestart(){
+    document.querySelector('#firstpage').style.display = 'block'
+    document.querySelector('#resultpage').style.display= 'none'
+    resettimer()
+    initializeGame()
+   
 }
