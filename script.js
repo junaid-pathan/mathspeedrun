@@ -12,22 +12,7 @@ function click(){  //to see which button u clicked
         }
     })
 }
-function timer(){
-    let timeleft = 29; 
-    let timer = document.querySelector('#time')
-    const intervalid = setInterval(() => {   //Have to give it a variable to store the name of the timer
-        timer.innerHTML=timeleft;
-        timeleft--
-        if(timeleft === 0 ){
-            clearInterval(intervalid)
-            timer.innerHTML="TIME'S UP"
-            document.querySelector('#hide').style.display='none'
 
-        }
-        
-    }, 1000);
-
-}
 function green(){
     document.querySelectorAll(".operation").forEach(number=>{
     number.style.color='green'
@@ -43,6 +28,7 @@ function red(){
     number.style.color='red'
     })
 }
+
 function add(){ 
     document.querySelector('#firstpage').style.display = 'none' //firstpage div is hidden and hide div is shown
     document.querySelector('#hide').style.display='block'
@@ -51,6 +37,23 @@ function add(){
     document.querySelector('#num1').innerHTML=num1;
     document.querySelector('#num2').innerHTML=num2;
     check(num1,num2)//Since num is local variable better to give it in the function
+}
+function timer(){
+    let timeleft = 29; 
+    let timer = document.querySelector('#time')
+    const intervalid = setInterval(() => {   //Have to give it a variable to store the name of the timer
+        timer.innerHTML=timeleft;
+        timeleft--
+        if(timeleft === 1 ){
+            timer.innerHTML="TIME'S UP"
+            document.querySelector('#input').disabled=true;
+            
+        }   
+        if (timeleft<=0){
+            clearInterval(intervalid)
+            document.querySelector('#hide').style.display='none'
+        }
+    }, 1000);
 }
 function check(num1,num2){
     let score = parseInt(document.querySelector('#value').innerHTML)
@@ -64,19 +67,15 @@ function check(num1,num2){
             if (useranswer===correctanswer){
                 green()
                 document.querySelector("#value").innerHTML=`${score+5}`
-                
             }
             else{
                 red()
                 document.querySelector("#value").innerHTML=`${score-5}`
-                
             }
             setTimeout(() => {
                      black();
                      add();
                 }, 250);
-
-            
             bar.value=""
             bar.removeEventListener('keydown',handlekeydown)
         }

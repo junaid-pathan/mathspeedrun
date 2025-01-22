@@ -8,6 +8,7 @@
     }
 }
 body{
+    width: 100%;
     text-align: center;
     justify-content: center;
     background-image: url(1.jpg);
@@ -79,7 +80,7 @@ body{
 }
 h1{
     padding: 10px;
-    height: 140px;
+    height: 170px;
     width: 60%;
     border-style: ridge;
     border-radius: 15px;
@@ -111,9 +112,49 @@ h2{
 }
 
 #firstpage{
-    display: block;
+    display: none;
     animation-name: fadein;
-    animation-duration: 2s;
+    animation-duration: 4s;
     animation-play-state: running;
+    animation-fill-mode: forwards;
+}
+#results{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: purple; */
+}
+#marks{
+    /* background-color: wheat; */
+    overflow: visible;
+}
+#highscore{
+    margin-top: 70;
+    /* background-color: brown; */
+    animation-name: fadein;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+#restart{
+    height: 10%;
+    margin: 60;
+}
+h4{
+    font-size: 70px;
+    margin: 20;
+}
+h6{
+    /* color: white; */
+    display: inline;
+    font-size: 30;
+}
+#displayscore{
+    animation-name: fadein;
+    animation-duration: 3s;
     animation-fill-mode: forwards;
 }
