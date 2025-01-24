@@ -1,20 +1,20 @@
-document.addEventListener("DOMContentLoaded",()=>{
-    initializeGame()
-})
-function initializeGame(){  //to see which button u clicked\
+initializeGame()
+function initializeGame() {
+    // Reset button event listeners
     document.querySelectorAll('button').forEach((button) => {
-        button.removeEventListener('click', button.onclick);
+        // Remove existing event listeners by replacing the button element
+        button.replaceWith(button.cloneNode(true)); 
     });
-   
-    document.querySelectorAll('button').forEach((button)=>{ 
-        button.onclick = function(){   //only when clicked this function runs. 
-            if (button.dataset.operation === 'add'){ //data-operation is the field in the button
-                timer()
-                add()
-                
+
+    // Add new event listeners
+    document.querySelectorAll('button').forEach((button) => {
+        button.addEventListener('click', function() {
+            if (button.dataset.operation === 'add') {
+                timer();
+                add();
             }
-        }
-    })
+        });
+    });
 }
 
 function green(){
@@ -116,16 +116,5 @@ function result(){
     restart.addEventListener('click',gamerestart)
 }
 function gamerestart(){
-    resetvalues()
-    document.querySelector('#firstpage').style.display = 'block'
-    document.querySelector('#resultpage').style.display= 'none'
-    initializeGame()
-   
+    location.reload()
 }
-function resetvalues(){
-    document.querySelector('#value').innerHTML = 0;
-    document.querySelector('#input').disabled=false;
-    document.querySelector('#input').value = "";
-    let timer = document.querySelector('#time');
-    clearInterval(window.timerInterval);
-    timer.innerHTML='30'}
