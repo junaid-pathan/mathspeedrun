@@ -49,8 +49,8 @@ function red(){
 function add(){ 
     document.querySelector('#firstpage').style.display = 'none' //firstpage div is hidden and hide div is shown
     document.querySelector('#hide').style.display='block'
-    let num1 = Math.ceil(Math.random()*10)
-    let num2 = Math.ceil(Math.random()*10)
+    let num1 = Math.ceil(Math.random()*100)
+    let num2 = Math.ceil(Math.random()*100)
     document.querySelector('#num1').innerHTML=num1;
     document.querySelector('#num2').innerHTML=num2;
     check(num1,num2)//Since num is local variable better to give it in the function
