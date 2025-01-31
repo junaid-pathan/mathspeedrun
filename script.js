@@ -1,10 +1,23 @@
+let run = true
 initializeGame()
 function initializeGame() {
+    console.log(run)
+    clearInterval(timer)
+
     // Reset button event listeners
     document.querySelectorAll('button').forEach((button) => {
         // Remove existing event listeners by replacing the button element
         button.replaceWith(button.cloneNode(true)); 
     });
+    if (run === false){
+        setTimeout(function(){
+            document.querySelector('#hide').style.display='none'
+            document.querySelector('#resultpage').style.display='block'
+        },1000)
+        result()
+        
+        return
+    }
 
     // Add new event listeners
     document.querySelectorAll('button').forEach((button) => {
@@ -47,19 +60,18 @@ function add(){
 
 function timer(){
     let timeleft = 29; 
-    let timer = document.querySelector('#time')
+    let timercount = document.querySelector('#time')
     window.timerInterval  = setInterval(() => {   //Have to give it a variable to store the name of the timer
-        timer.innerHTML=timeleft;
+        timercount.innerHTML=timeleft;
         timeleft--  
-        if (timeleft<0){
-            timer.innerHTML="TIME'S UP"
+        if (timeleft===0){
+            timercount.innerHTML="TIME'S UP"
             document.querySelector('#input').disabled=true;
+            run=false
             clearInterval(  window.timerInterval )
-            setTimeout(function(){
-                document.querySelector('#hide').style.display='none'
-                document.querySelector('#resultpage').style.display='block'
-                result()
-            },1000)
+            initializeGame()
+            return
+            
             
         }
     }, 1000);
@@ -67,9 +79,8 @@ function timer(){
 
 function check(num1,num2){
     let score = parseInt(document.querySelector('#value').innerHTML)
-    let bar =  document.querySelector('#input')
-    bar.addEventListener('keydown',handlekeydown)
-    function handlekeydown(event){
+    let bar =  document.getElementById('input')
+    bar.onkeydown= function(event){ 
         if (event.key==="Enter"){
             let useranswer= parseInt(bar.value); 
             let correctanswer= num1+num2
@@ -87,11 +98,12 @@ function check(num1,num2){
                      add();
                 }, 250);
             bar.value=""
-            bar.removeEventListener('keydown',handlekeydown)
         }
-             
-        }   
+
     }
+        
+    }   
+
 
 function result(){ 
     let userscore = document.querySelector('#displayscore')
@@ -112,9 +124,16 @@ function result(){
     }
     userscore.innerHTML=finalscore
     highscore.innerHTML=maxscore
-    let restart = document.querySelector('#restart')
-    restart.addEventListener('click',gamerestart)
-}
-function gamerestart(){
-    location.reload()
+    let restart = document.getElementById('restart')
+    run = true
+    restart.onclick=function(){ 
+        document.querySelector('#firstpage').style.display = 'block' //firstpage div is hidden and hide div is shown
+        document.querySelector('#resultpage').style.display='none'
+        document.querySelector('#input').disabled=false;
+        document.querySelector("#value").innerHTML=0
+        document.querySelector('#time').innerHTML=30
+        initializeGame()
+
+    }
+
 }
