@@ -132,6 +132,7 @@ function result(){
         document.querySelector('#input').disabled=false;
         document.querySelector("#value").innerHTML=0
         document.querySelector('#time').innerHTML=30
+        document.getElementById('input').value = ""
         initializeGame()
 
     }
