@@ -32,8 +32,7 @@ body{
 }
 
 .operation{
-   margin: 20;
-   padding-left: 30; 
+   margin: 20; 
 
 }
 #question{
@@ -46,6 +45,10 @@ body{
     width: 750;
     margin-bottom: 50;
 
+}
+#group{
+    display:flex;
+    justify-content: space-between;
 }
 #bar{
     
