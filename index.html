@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathSpeedRun</title>
+    <link rel="stylesheet" href="style.css">
+   
+
+</head>
+<body>
+    <div id="firstpage">
+        <div id="welcome">
+            <h1> A simple game to test your speed in the world of math !</h1>
+        </div>
+        <h2 style=>You get 5 points for correct and lose 2 marks for incorrect answer</h2>
+        <div id="buttons">
+            <button data-operation="add" class="options">PLAY</button>
+            <!-- <button  data-operation="multiply" class="options">Multiply (HARD) </button> -->
+        </div>
+    </div>
+
+    <div id="hide">
+            <div id="game">
+                <div id="center">
+                    <div id="question">
+                        <div id="group">  
+                            <div id='num1'class="operation"></div>
+                            <div id='sign'class="operation">+</div>
+                            <div id='num2'class="operation"></div>
+                        </div>
+                    </div>
+             
+                    <div id="bar">
+                         <input id="input" type="text" placeholder="Answer" autofocus/>
+                    </div>
+                    <div id="score">
+                        <div style="display: inline-block; " id="text">SCORE:</div>
+                        <div style="display: inline-block;" id="value">0</div>
+                    </div> 
+                    <div id="time">30</div>
+                </div>
+            </div>
+    </div>
+    <div id="resultpage">
+          <div id="results">
+              <div id="marks">
+                  <h4>YOUR SCORE IS </h1>
+                  <h4 id="displayscore" style="color:red;">XYZ</h2>
+                  <button id="restart">Back To Main Menu</button>    
+              </div>
+              <div id="highscore">
+                  <h6>Highest Score is</h6>
+                  <h6 id="maxscore"></h6>
+              </div>
+      
+          </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
